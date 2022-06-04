@@ -14,7 +14,8 @@ const app = express();
 app.use("/", express.static(path.join(globalRootDir, "public")));
 
 
-const server = app.listen(80);
+const server = app.listen(Number(process.env.PORT || 80), () => console.log(`Example app listening on port ${port}!`))
+
 
 const webSocketServer = new WebSocket.Server({ server: server, path: "/sw" });
 const clientsByName = new Map();
