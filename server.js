@@ -49,57 +49,11 @@ webSocketServer.on('connection', (client) => {
                 }
                 break;
             case "ADD_ICE_CANDIDATE_FOR_MY_PEAR":
-                SENT({ type: "ADD_ICE_CANDIDATE", candidate: messageData.data.candidate }, paraClient);
-            // 
-            // webSockState.sendData({
-            //     type: "SEND_ANSWER_FOR_OFFER_CREATOR",
-            //     answer: answer
-            // });
-            // 
-            // SEND_CREATED_OFFER
-            //     case "GET_MY_OFFER_OR_TAKE_MAIN":
-            //         client.on('disconnect', function (data) {
-            //             clientMap.delete(messageData.author)
-            //         });
-            //         clientMap.set(messageData.author, {
-            //             connect: client,
-            //             ...messageData
-            //         });
-            //         const clientData = clientMap.get(messageData.connectToName)
-            //         if (clientData) {
-            //             client.send(JSON.stringify({
-            //                 data: {
-            //                     type: "TAKE_OFFER_AND_ANSWER",
-            //                     offerData: clientData.data.offer
-            //                 }
-            //             }))
-            //         }
-            //         break;
-            //     case "TAKE_MY_ANSWER_FOR_OFFER":
-            //         const answerForClient = clientMap.get(messageData.connectToName);
-            //         console.log("🚀 --> file: server.js --> line 43 --> client.on --> answerForClient", !!answerForClient);
-            //         if (answerForClient) {
-            //             answerForClient.connect.send(JSON.stringify({
-            //                 data: {
-            //                     type: "CATCH_ANSWER_FOR_FOR_OFFER",
-            //                     answer: messageData.data.answer
-            //                     // offerData: clientData.data.offer
-            //                 }
-            //             }));
-            //         }
-            //         break;
-            //     case "ADD_CANDIDATE_FOR_MY_PEAR":
-            //         const addCandidateForClient = clientMap.get(messageData.connectToName);
-            //         console.log("🚀 --> file: server.js --> line 55 --> client.on --> addCandidateForClient", !!addCandidateForClient);
-            //         if (addCandidateForClient) {
-            //             addCandidateForClient.connect.send(JSON.stringify({
-            //                 data: {
-            //                     type: "ADD_ICE_CANDIDATE",
-            //                     iceCandidate: messageData.data.iceCandidate
-            //                 }
-            //             }));
-            //         }
-            //         break;
+                SENT({ type: "ADD_ICE_CANDIDATE", candidate: messageData.data.candidate });
+                // SENT({ type: "ADD_ICE_CANDIDATE", candidate: messageData.data.candidate }, paraClient);
+                break;
+            case "CATCH_TEXT_MESSAGE":
+                break;
         }
     });
 

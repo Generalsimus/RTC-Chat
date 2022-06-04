@@ -57,6 +57,8 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
                 console.log("🚀 --> file: createWebSocket.js --> line 28 --> socket.addEventListener --> messageData", messageData);
                 await RTCMediaStream.addIceCandidate(messageData.data.candidate);
                 break;
+            case "CATCH_TEXT_MESSAGE":
+                break;
             // case "ADD_ICE_CANDIDATE_FOR_MY_PEAR":
             //     SENT({ type: "ADD_ICE_CANDIDATE", answer: messageData.data.iceCandidate }, paraClient);
             // case "TAKE_OFFER_AND_ANSWER":
