@@ -10,7 +10,8 @@ const ws_1 = __importDefault(require("ws"));
 exports.globalRootDir = path_1.default.join(__dirname, '../');
 const app = (0, express_1.default)();
 app.use("/", express_1.default.static(path_1.default.join(exports.globalRootDir, "public")));
-const server = app.listen(Number(process.env.PORT || 3000), () => console.log(`Example app listening on port ${port}!`));
+const port = Number(process.env.PORT || 3000);
+const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 const webSocketServer = new ws_1.default.Server({ server: server, path: "/sw" });
 const clientsByName = new Map();
 webSocketServer.on('connection', (client) => {
