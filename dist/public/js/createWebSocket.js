@@ -23,7 +23,6 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
         }
     };
     socket.addEventListener('open', (event) => __awaiter(void 0, void 0, void 0, function* () {
-        const offerDescription = yield RTCMediaStream.createOffer();
         webSockState.sendData({
             type: "INIT_CLIENT_CONNECT"
         });

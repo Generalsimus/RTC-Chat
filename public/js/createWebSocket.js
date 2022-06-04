@@ -12,7 +12,6 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
     }
 
     socket.addEventListener('open', async (event) => {
-        const offerDescription = await RTCMediaStream.createOffer();
         webSockState.sendData({
             type: "INIT_CLIENT_CONNECT"
         })
