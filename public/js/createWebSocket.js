@@ -50,15 +50,6 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
                     type: "SEND_ANSWER_FOR_OFFER_CREATOR",
                     answer: answer
                 });
-                await RTCMediaStream.addIceCandidateListener((event) => {
-                    if (event.candidate) {
-                        webSockState.sendData({
-                            type: "ADD_ICE_CANDIDATE_FOR_MY_PEAR",
-                            candidate: event.candidate.toJSON(),
-                        });
-                    }
-
-                });
                 break;
             case "CATCH_ANSWER":
                 await RTCMediaStream.catchAnswer(messageData.data.answer);

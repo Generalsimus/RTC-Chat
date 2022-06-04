@@ -58,14 +58,6 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
                     type: "SEND_ANSWER_FOR_OFFER_CREATOR",
                     answer: answer
                 });
-                yield RTCMediaStream.addIceCandidateListener((event) => {
-                    if (event.candidate) {
-                        webSockState.sendData({
-                            type: "ADD_ICE_CANDIDATE_FOR_MY_PEAR",
-                            candidate: event.candidate.toJSON(),
-                        });
-                    }
-                });
                 break;
             case "CATCH_ANSWER":
                 yield RTCMediaStream.catchAnswer(messageData.data.answer);
