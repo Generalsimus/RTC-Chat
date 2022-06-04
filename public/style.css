@@ -40,7 +40,7 @@ body {
   justify-content: center;
 }
 
-.chat-container .remote-video {
+.chat-container .local-video {
   top: 0;
   right: 0;
   position: absolute;
@@ -48,7 +48,7 @@ body {
   z-index: 5;
 }
 
-.chat-container .local-video {
+.chat-container .remote-video {
   position: absolute;
   height: 100vh;
 }

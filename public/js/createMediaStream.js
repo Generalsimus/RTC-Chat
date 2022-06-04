@@ -12,14 +12,15 @@ export const createMediaStream = async (peerConnection) => {
 
     // Pull tracks from remote stream, add to video stream
     peerConnection.ontrack = (event) => {
-        console.log("🚀 --> file: m.js --> line 25 --> createMedia --> event", event);
+        console.log("🚀 --> file: createMediaStream.js --> line 15 --> createMediaStream --> event", event);
         event.streams[0].getTracks().forEach((track) => {
-            // console.log("🚀 --> file: m.js --> line 27 --> event.streams[0].getTracks --> track", track);
             remoteStream.addTrack(track);
         });
     };
 
 
+    localVideoTag.srcObject = localStream;
+    remoteVideoTag.srcObject = remoteStream;
 
     return {
         localStream,

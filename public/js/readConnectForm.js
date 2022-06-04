@@ -10,21 +10,32 @@ export const readConnectForm = async () => {
         yourName: undefined,
     }
     myNameInput.addEventListener('change', (e) => {
-        nameState.myName = myNameInput.value
+        nameState.myName = myNameInput.value.trim();
     })
     myNameInput.addEventListener('input', (e) => {
-        nameState.myName = myNameInput.value
+        nameState.myName = myNameInput.value.trim();
     })
     yourNameInput.addEventListener('change', (e) => {
-        nameState.yourName = yourNameInput.value
+        nameState.yourName = yourNameInput.value.trim();
     })
     yourNameInput.addEventListener('input', (e) => {
-        nameState.yourName = yourNameInput.value
+        nameState.yourName = yourNameInput.value.trim();
     })
-    joinChatButton.addEventListener('click', () => {
+    chatFormContainerTag.addEventListener('submit', (e) => {
+        e.preventDefault();
         chatFormContainerTag.style.display = 'none'
         chatMessengerContainer.style.display = 'flex'
     })
 
-    return nameState
+
+    return {
+        nameState,
+        onSubmit(callBack) {
+            chatFormContainerTag.addEventListener('submit', (e) => {
+                e.preventDefault();
+                callBack(nameState);
+            });
+
+        }
+    }
 }
