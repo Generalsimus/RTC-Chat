@@ -14,7 +14,7 @@ const app = express();
 app.use("/", express.static(path.join(globalRootDir, "public")));
 
 
-const server = app.listen(8080);
+const server = app.listen(80);
 
 const webSocketServer = new WebSocket.Server({ server: server, path: "/sw" });
 const clientsByName = new Map();
