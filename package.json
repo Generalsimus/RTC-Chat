@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
+    "start": "node ./dist/index.js",
     "migrate": "npx prisma migrate dev"
   },
   "devDependencies": {
