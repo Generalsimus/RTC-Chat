@@ -49,8 +49,8 @@ webSocketServer.on('connection', (client) => {
                 }
                 break;
             case "ADD_ICE_CANDIDATE_FOR_MY_PEAR":
-                SENT({ type: "ADD_ICE_CANDIDATE", candidate: messageData.data.candidate });
-                // SENT({ type: "ADD_ICE_CANDIDATE", candidate: messageData.data.candidate }, paraClient);
+                // SENT({ type: "ADD_ICE_CANDIDATE", candidate: messageData.data.candidate });
+                SENT({ type: "ADD_ICE_CANDIDATE", candidate: messageData.data.candidate }, paraClient);
                 break;
             case "CATCH_TEXT_MESSAGE":
                 break;
