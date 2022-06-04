@@ -1,6 +1,6 @@
 export const createWebSocket = async (RTCMediaStream, connectFormState) => {
-
-    const socket = new WebSocket(`wss://${window.location.host}/sw`);
+    const wsProtocol = window.location.protocol === "http:" ? "ws" : "wss"
+    const socket = new WebSocket(`${wsProtocol}://${window.location.host}/sw`);
     const webSockState = {
         sendData(data = {}) {
             socket.send(JSON.stringify({
@@ -25,6 +25,16 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
     socket.addEventListener('message', async (event) => {
         // console.log('Message from server ', event.data);
         const messageData = JSON.parse(event.data);
+        await RTCMediaStream.addIceCandidateListener((event) => {
+            if (event.candidate) {
+                webSockState.sendData({
+                    type: "ADD_ICE_CANDIDATE_FOR_MY_PEAR",
+                    candidate: event.candidate.toJSON(),
+                });
+            }
+
+        });
+
         switch (messageData.data.type) {
             case "GET_RTC_OFFER":
                 const offer = await RTCMediaStream.createOffer();
@@ -51,15 +61,6 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
                 });
                 break;
             case "CATCH_ANSWER":
-                await RTCMediaStream.addIceCandidateListener((event) => {
-                    if (event.candidate) {
-                        webSockState.sendData({
-                            type: "ADD_ICE_CANDIDATE_FOR_MY_PEAR",
-                            candidate: event.candidate.toJSON(),
-                        });
-                    }
-
-                });
                 await RTCMediaStream.catchAnswer(messageData.data.answer);
                 break;
             case "ADD_ICE_CANDIDATE":

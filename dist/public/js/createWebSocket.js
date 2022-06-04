@@ -11,7 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebSocket = void 0;
 const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, void 0, void 0, function* () {
-    const socket = new WebSocket(`wss://${window.location.host}/sw`);
+    const wsProtocol = window.location.protocol === "http:" ? "ws" : "wss";
+    const socket = new WebSocket(`${wsProtocol}://${window.location.host}/sw`);
     const webSockState = {
         sendData(data = {}) {
             socket.send(JSON.stringify({
@@ -34,6 +35,14 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
     socket.addEventListener('message', (event) => __awaiter(void 0, void 0, void 0, function* () {
         // console.log('Message from server ', event.data);
         const messageData = JSON.parse(event.data);
+        yield RTCMediaStream.addIceCandidateListener((event) => {
+            if (event.candidate) {
+                webSockState.sendData({
+                    type: "ADD_ICE_CANDIDATE_FOR_MY_PEAR",
+                    candidate: event.candidate.toJSON(),
+                });
+            }
+        });
         switch (messageData.data.type) {
             case "GET_RTC_OFFER":
                 const offer = yield RTCMediaStream.createOffer();
@@ -59,14 +68,6 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
                 });
                 break;
             case "CATCH_ANSWER":
-                yield RTCMediaStream.addIceCandidateListener((event) => {
-                    if (event.candidate) {
-                        webSockState.sendData({
-                            type: "ADD_ICE_CANDIDATE_FOR_MY_PEAR",
-                            candidate: event.candidate.toJSON(),
-                        });
-                    }
-                });
                 yield RTCMediaStream.catchAnswer(messageData.data.answer);
                 break;
             case "ADD_ICE_CANDIDATE":
