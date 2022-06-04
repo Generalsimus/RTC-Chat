@@ -1,6 +1,6 @@
 export const createWebSocket = async (RTCMediaStream, connectFormState) => {
 
-    const socket = new WebSocket(`ws://${window.location.host}/sw`);
+    const socket = new WebSocket(`wss://${window.location.host}/sw`);
     const webSockState = {
         sendData(data = {}) {
             socket.send(JSON.stringify({

@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebSocket = void 0;
 const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, void 0, void 0, function* () {
-    const socket = new WebSocket(`ws://${window.location.host}/sw`);
+    const socket = new WebSocket(`wss://${window.location.host}/sw`);
     const webSockState = {
         sendData(data = {}) {
             socket.send(JSON.stringify({
