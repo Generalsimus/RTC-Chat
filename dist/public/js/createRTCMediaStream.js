@@ -33,14 +33,14 @@ const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* (
             return __awaiter(this, void 0, void 0, function* () {
                 const offerDescription = yield peerConnection.createOffer();
                 yield peerConnection.setLocalDescription(offerDescription);
-                return peerConnection.localDescription;
+                return offerDescription;
             });
         },
         createAnswer() {
             return __awaiter(this, void 0, void 0, function* () {
                 const answerDescription = yield peerConnection.createAnswer();
                 yield peerConnection.setLocalDescription(answerDescription);
-                return peerConnection.localDescription;
+                return answerDescription;
             });
         },
         addIceCandidate(iceCandidate) {

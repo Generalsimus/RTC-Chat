@@ -23,12 +23,12 @@ export const createRTCMediaStream = async () => {
         async createOffer() {
             const offerDescription = await peerConnection.createOffer();
             await peerConnection.setLocalDescription(offerDescription);
-            return peerConnection.localDescription
+            return offerDescription
         },
         async createAnswer() {
             const answerDescription = await peerConnection.createAnswer();
             await peerConnection.setLocalDescription(answerDescription);
-            return peerConnection.localDescription
+            return answerDescription
         },
         async addIceCandidate(iceCandidate) {
             // const candidate = new RTCIceCandidate(iceCandidate);
