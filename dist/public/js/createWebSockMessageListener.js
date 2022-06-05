@@ -78,7 +78,7 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, conn
                 webSockState.sendData({
                     type: "TRANSLATE_TEXT_MESSAGE",
                     language: connectFormState.language,
-                    author: messageData.data.message,
+                    author: messageData.data.author,
                     message: messageData.data.message
                 });
                 break;
