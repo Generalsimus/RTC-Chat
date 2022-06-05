@@ -14,6 +14,11 @@ const createMediaStream_js_1 = require("./createMediaStream.js");
 const servers = {
     iceServers: [
         {
+            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+            credential: 'webrtc',
+            username: 'webrtc'
+        },
+        {
             url: 'turn:numb.viagenie.ca',
             credential: 'muazkh',
             username: 'webrtc@live.com'
@@ -32,11 +37,6 @@ const servers = {
             url: 'turn:turn.bistri.com:80',
             credential: 'homeo',
             username: 'homeo'
-        },
-        {
-            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
-            credential: 'webrtc',
-            username: 'webrtc'
         },
         { urls: "stun:stun.l.google.com:19302" },
         { urls: "stun:stun.services.mozilla.com" },
@@ -58,7 +58,7 @@ const coolServers = {
 };
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection(coolServers);
+    const peerConnection = new RTCPeerConnection(servers);
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
     return {
         createOffer() {
