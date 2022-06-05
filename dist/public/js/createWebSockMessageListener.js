@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebSockMessageListener = void 0;
-const createWebSockMessageListener = (socket, webSockState) => {
+const createWebSockMessageListener = (socket, RTCMediaStream, webSockState) => {
     // Listen for messages
     socket.addEventListener('message', (event) => __awaiter(void 0, void 0, void 0, function* () {
         // console.log('Message from server ', event.data);

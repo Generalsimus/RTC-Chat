@@ -1,4 +1,4 @@
-export const createWebSockMessageListener = (socket, webSockState) => {
+export const createWebSockMessageListener = (socket, RTCMediaStream, webSockState) => {
     // Listen for messages
     socket.addEventListener('message', async (event) => {
         // console.log('Message from server ', event.data);
