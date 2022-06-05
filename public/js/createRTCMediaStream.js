@@ -35,10 +35,19 @@ const servers = {
         { url: "stun:stun.stunprotocol.org:3478" },
     ]
 }
-
+const coolServers = {
+    bundlePolicy: "balanced",
+    iceServers: [
+        { urls: 'turn:23.106.248.8:443?transport=udp', username: '1654437114:1654436994027393760', credential: '1Oob+EAN5WilAHdUhduosxVwaA4=' },
+        { urls: 'turn:35.181.43.222:443?transport=udp', username: '1654437114:1654436994027393760', credential: '1Oob+EAN5WilAHdUhduosxVwaA4=' },
+        { urls: 'turn:35.181.43.222:443?transport=tcp', username: '1654437114:1654436994027393760', credential: '1Oob+EAN5WilAHdUhduosxVwaA4=' }
+    ],
+    iceTransportPolicy: "all",
+    rtcpMuxPolicy: "require"
+}
 export const createRTCMediaStream = async () => {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection(servers);
+    const peerConnection = new RTCPeerConnection(coolServers);
     const { } = createMediaStream(peerConnection);
 
     return {
