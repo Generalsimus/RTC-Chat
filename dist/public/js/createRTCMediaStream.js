@@ -16,15 +16,15 @@ const servers = {
         {
             urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
         },
+        { urls: "stun:stun.l.google.com:19302" },
+        { urls: "stun:stun.services.mozilla.com" },
+        { urls: "stun:stun.stunprotocol.org:3478" },
+        { url: "stun:stun.l.google.com:19302" },
+        { url: "stun:stun.services.mozilla.com" },
+        { url: "stun:stun.stunprotocol.org:3478" },
     ],
     iceCandidatePoolSize: 10,
 };
-// {urls: "stun:stun.l.google.com:19302"},
-// {urls: "stun:stun.services.mozilla.com"},
-// {urls: "stun:stun.stunprotocol.org:3478"},
-// {url: "stun:stun.l.google.com:19302"},
-// {url: "stun:stun.services.mozilla.com"},
-// {url: "stun:stun.stunprotocol.org:3478"},
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
     const peerConnection = new RTCPeerConnection(servers);
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
@@ -33,14 +33,14 @@ const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* (
             return __awaiter(this, void 0, void 0, function* () {
                 const offerDescription = yield peerConnection.createOffer();
                 yield peerConnection.setLocalDescription(offerDescription);
-                return offerDescription;
+                return peerConnection.localDescription;
             });
         },
         createAnswer() {
             return __awaiter(this, void 0, void 0, function* () {
                 const answerDescription = yield peerConnection.createAnswer();
                 yield peerConnection.setLocalDescription(answerDescription);
-                return answerDescription;
+                return peerConnection.localDescription;
             });
         },
         addIceCandidate(iceCandidate) {
@@ -48,6 +48,7 @@ const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* (
                 // const candidate = new RTCIceCandidate(iceCandidate);
                 // const candidate = new RTCIceCandidate(change.doc.data());
                 // pc.addIceCandidate(candidate);
+                // ⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷
                 peerConnection.addIceCandidate(new RTCIceCandidate(iceCandidate));
                 return iceCandidate;
             });

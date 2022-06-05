@@ -18,22 +18,24 @@ const servers = {
 export const createRTCMediaStream = async () => {
     const peerConnection = new RTCPeerConnection(servers);
     const { } = createMediaStream(peerConnection);
+
     return {
         async createOffer() {
             const offerDescription = await peerConnection.createOffer();
             await peerConnection.setLocalDescription(offerDescription);
-            return offerDescription
+            return peerConnection.localDescription
         },
         async createAnswer() {
             const answerDescription = await peerConnection.createAnswer();
             await peerConnection.setLocalDescription(answerDescription);
-            return answerDescription
+            return peerConnection.localDescription
         },
         async addIceCandidate(iceCandidate) {
             // const candidate = new RTCIceCandidate(iceCandidate);
 
             // const candidate = new RTCIceCandidate(change.doc.data());
             // pc.addIceCandidate(candidate);
+            // ⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷⟷
             peerConnection.addIceCandidate(new RTCIceCandidate(iceCandidate));
             return iceCandidate
         },
