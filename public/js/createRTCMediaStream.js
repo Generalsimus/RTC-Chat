@@ -3,11 +3,6 @@ import { createMediaStream } from "./createMediaStream.js";
 const servers = {
     iceServers: [
         {
-            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
-            credential: 'webrtc',
-            username: 'webrtc'
-        },
-        {
             url: 'turn:numb.viagenie.ca',
             credential: 'muazkh',
             username: 'webrtc@live.com'
@@ -33,6 +28,11 @@ const servers = {
         { url: "stun:stun.l.google.com:19302" },
         { url: "stun:stun.services.mozilla.com" },
         { url: "stun:stun.stunprotocol.org:3478" },
+        {
+            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+            credential: 'webrtc',
+            username: 'webrtc'
+        },
     ]
 }
 const coolServers = {
