@@ -2,7 +2,7 @@ export const createMediaStream = async (peerConnection) => {
     const localVideoTag = document.querySelector('.local-video');
     const remoteVideoTag = document.querySelector('.remote-video');
 
-    const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
     const remoteStream = new MediaStream();
 
     // Push tracks from local stream to peer connection
