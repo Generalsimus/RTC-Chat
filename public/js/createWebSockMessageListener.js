@@ -10,7 +10,6 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
         const messageData = JSON.parse(event.data);
         await RTCMediaStream.addIceCandidateListener((event) => {
             if (event.candidate) {
-                loader.start("Waiting candidate...");
                 webSockState.sendData({
                     type: "ADD_ICE_CANDIDATE_FOR_MY_PEAR",
                     candidate: event.candidate.toJSON(),
@@ -38,7 +37,7 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
                 });
                 break;
             case "CATCH_ANSWER":
-                loader.start("Take Answer...");
+                loader.start("Waiting candidate...");
                 await RTCMediaStream.catchAnswer(messageData.data.answer);
                 break;
             case "ADD_ICE_CANDIDATE":
