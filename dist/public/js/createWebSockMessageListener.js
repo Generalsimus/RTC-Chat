@@ -55,8 +55,16 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, conn
                 yield RTCMediaStream.addIceCandidate(messageData.data.candidate);
                 break;
             case "CATCH_TEXT_MESSAGE":
+                webSockState.sendData({
+                    type: "TRANSLATE_TEXT_MESSAGE",
+                    language: connectFormState.language,
+                    author: messageData.data.message,
+                    message: messageData.data.message
+                });
+                break;
+            case "CATCH_TRANSLATED_TEXT_MESSAGE":
                 const authorIndex = connectFormState.myName === messageData.data.author ? "me" : "you";
-                (0, addMessage_js_1.addMessage)(messageData.data.message, authorIndex);
+                (0, addMessage_js_1.addMessage)(messageData.data.translatedMessage, messageData.data.originalMessage, authorIndex);
                 break;
         }
     }));

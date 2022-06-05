@@ -188,3 +188,14 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.chat-text-message-translated {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.chat-text-message-original {
+  font-size: 12px;
+  font-weight: bold;
+  color: #0000007d;
+}
