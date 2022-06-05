@@ -14,9 +14,6 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
                 socket = createWebSocketServer();
                 await new Promise((resolve, reject) => socket.addEventListener('open', resolve));
                 webSockState.sendData({
-                    type: "INIT_CLIENT_CONNECT"
-                });
-                webSockState.sendData({
                     type: "GET_RTC_OFFER"
                 })
                 createWebSockMessageListener(socket, webSockState);
@@ -35,7 +32,9 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
         }
     }
 
-
+    webSockState.sendData({
+        type: "INIT_CLIENT_CONNECT"
+    });
 
     return webSockState
 }
