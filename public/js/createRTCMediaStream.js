@@ -18,11 +18,7 @@ const servers = {
 
 export const createRTCMediaStream = async () => {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection({
-        iceServers: [
-           
-        ],
-    });
+    const peerConnection = new RTCPeerConnection();
     const { } = createMediaStream(peerConnection);
 
     return {

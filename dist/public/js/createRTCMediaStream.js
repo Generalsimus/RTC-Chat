@@ -27,9 +27,7 @@ const servers = {
 };
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection({
-        iceServers: [],
-    });
+    const peerConnection = new RTCPeerConnection();
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
     return {
         createOffer() {
