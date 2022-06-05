@@ -49,8 +49,7 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
     yield webSockState.sendData({
         type: "INIT_CLIENT_CONNECT"
     });
-    loader.start();
-    loader.setMessage("Waiting Partner...");
+    loader.start("Waiting Partner...");
     yield webSockState.sendData({
         type: "GET_RTC_OFFER"
     });

@@ -15,11 +15,7 @@ export const cerateChatMessenger = (webSockState) => {
 
         inputTag.value = ""
         inputTag.focus();
-    })
-    // const onChangeInputValue = () => {
-
-    // }
-    // inputTag.addEventListener('change', onChangeInputValue)
-    // inputTag.addEventListener('input', onChangeInputValue)
+    });
+    
 
 }

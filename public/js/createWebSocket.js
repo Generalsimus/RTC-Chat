@@ -41,8 +41,7 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
     await webSockState.sendData({
         type: "INIT_CLIENT_CONNECT"
     });
-    loader.start();
-    loader.setMessage("Waiting Partner...");
+    loader.start("Waiting Partner...");
     await webSockState.sendData({
         type: "GET_RTC_OFFER"
     });

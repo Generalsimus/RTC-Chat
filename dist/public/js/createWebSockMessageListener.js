@@ -13,7 +13,20 @@ exports.createWebSockMessageListener = void 0;
 const addLoader_js_1 = require("./addLoader.js");
 const addMessage_js_1 = require("./addMessage.js");
 const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, connectFormState) => {
-    const chatBox = document.querySelector('.chat-start-messaging-here');
+    const callSafe = (callBack) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            yield callBack();
+        }
+        catch (e) {
+            loader.start("Waiting Partner...");
+            yield webSockState.sendData({
+                type: "INIT_CLIENT_CONNECT"
+            });
+            yield webSockState.sendData({
+                type: "GET_RTC_OFFER"
+            });
+        }
+    });
     // Listen for messages
     socket.addEventListener('message', (event) => __awaiter(void 0, void 0, void 0, function* () {
         // console.log('Message from server ', event.data); 
@@ -30,28 +43,36 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, conn
         switch (messageData.data.type) {
             case "GET_RTC_OFFER":
                 loader.start("Waiting answer...");
-                const offer = yield RTCMediaStream.createOffer();
-                webSockState.sendData({
-                    type: "SEND_CREATED_OFFER",
-                    offer: offer
-                });
+                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                    const offer = yield RTCMediaStream.createOffer();
+                    yield webSockState.sendData({
+                        type: "SEND_CREATED_OFFER",
+                        offer: offer
+                    });
+                }));
                 break;
             case "GET_ANSWER_OF_OFFER":
                 loader.start("Send Answer...");
-                yield RTCMediaStream.catchOffer(messageData.data.offer);
-                const answer = yield RTCMediaStream.createAnswer();
-                webSockState.sendData({
-                    type: "SEND_ANSWER_FOR_OFFER_CREATOR",
-                    answer: answer
-                });
+                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                    yield RTCMediaStream.catchOffer(messageData.data.offer);
+                    const answer = yield RTCMediaStream.createAnswer();
+                    webSockState.sendData({
+                        type: "SEND_ANSWER_FOR_OFFER_CREATOR",
+                        answer: answer
+                    });
+                }));
                 break;
             case "CATCH_ANSWER":
                 loader.start("Waiting candidate...");
-                yield RTCMediaStream.catchAnswer(messageData.data.answer);
+                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                    yield RTCMediaStream.catchAnswer(messageData.data.answer);
+                }));
                 break;
             case "ADD_ICE_CANDIDATE":
                 loader.end();
-                yield RTCMediaStream.addIceCandidate(messageData.data.candidate);
+                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                    yield RTCMediaStream.addIceCandidate(messageData.data.candidate);
+                }));
                 break;
             case "CATCH_TEXT_MESSAGE":
                 webSockState.sendData({
