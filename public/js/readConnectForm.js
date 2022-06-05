@@ -9,20 +9,22 @@ export const readConnectForm = async () => {
         myName: undefined,
         yourName: undefined,
     }
-    myNameInput.addEventListener('change', (e) => {
-        nameState.myName = convertValue(myNameInput.value);
-    })
-    myNameInput.addEventListener('input', (e) => {
-        nameState.myName = convertValue(myNameInput.value);
-    })
-    yourNameInput.addEventListener('change', (e) => {
-        nameState.yourName = convertValue(yourNameInput.value);
-    })
-    yourNameInput.addEventListener('input', (e) => {
-        nameState.yourName = convertValue(yourNameInput.value);
-    })
+    // myNameInput.addEventListener('change', (e) => {
+    //     nameState.myName = convertValue(myNameInput.value);
+    // })
+    // myNameInput.addEventListener('input', (e) => {
+    //     nameState.myName = convertValue(myNameInput.value);
+    // })
+    // yourNameInput.addEventListener('change', (e) => {
+    //     nameState.yourName = convertValue(yourNameInput.value);
+    // })
+    // yourNameInput.addEventListener('input', (e) => {
+    //     nameState.yourName = convertValue(yourNameInput.value);
+    // })
     chatFormContainerTag.addEventListener('submit', (e) => {
         e.preventDefault();
+        nameState.myName = convertValue(myNameInput.value);
+        nameState.yourName = convertValue(yourNameInput.value);
         chatFormContainerTag.style.display = 'none'
         chatMessengerContainer.style.display = 'flex'
     })

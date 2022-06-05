@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebSocket = void 0;
+const cerateChatMessenger_js_1 = require("./cerateChatMessenger.js");
 const createWebSockMessageListener_js_1 = require("./createWebSockMessageListener.js");
 const createWebSocketServer = () => {
     const wsProtocol = window.location.protocol === "http:" ? "ws" : "wss";
@@ -45,6 +46,7 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
     webSockState.sendData({
         type: "INIT_CLIENT_CONNECT"
     });
+    (0, cerateChatMessenger_js_1.cerateChatMessenger)(webSockState);
     return webSockState;
 });
 exports.createWebSocket = createWebSocket;

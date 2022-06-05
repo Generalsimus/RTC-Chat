@@ -1,4 +1,7 @@
+import { addMessage } from "./addMessage.js";
+
 export const createWebSockMessageListener = (socket, RTCMediaStream, webSockState) => {
+    const chatBox = document.querySelector('.chat-start-messaging-here');
     // Listen for messages
     socket.addEventListener('message', async (event) => {
         // console.log('Message from server ', event.data);
@@ -37,6 +40,7 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
                 await RTCMediaStream.addIceCandidate(messageData.data.candidate);
                 break;
             case "CATCH_TEXT_MESSAGE":
+                addMessage(messageData.data.message, "you");
                 break;
 
         }

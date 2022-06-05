@@ -111,6 +111,7 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  align-items: end;
 }
 
 .chat-message-you {}
@@ -121,9 +122,9 @@ body {
 
 .chat-message-time {
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: bold;
-  color: #00000040;
+  color: #0000007d;
   user-select: none;
 }
 
@@ -144,4 +145,8 @@ body {
 
 .join-chat-button {
   cursor: pointer;
+}
+
+.chat-text-message {
+  word-break: break-word;
 }

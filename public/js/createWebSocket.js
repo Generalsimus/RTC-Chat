@@ -1,3 +1,4 @@
+import { cerateChatMessenger } from "./cerateChatMessenger.js";
 import { createWebSockMessageListener } from "./createWebSockMessageListener.js";
 
 const createWebSocketServer = () => {
@@ -36,5 +37,6 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
         type: "INIT_CLIENT_CONNECT"
     });
 
+    cerateChatMessenger(webSockState);
     return webSockState
 }

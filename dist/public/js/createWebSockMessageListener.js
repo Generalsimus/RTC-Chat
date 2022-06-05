@@ -10,7 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebSockMessageListener = void 0;
+const addMessage_js_1 = require("./addMessage.js");
 const createWebSockMessageListener = (socket, RTCMediaStream, webSockState) => {
+    const chatBox = document.querySelector('.chat-start-messaging-here');
     // Listen for messages
     socket.addEventListener('message', (event) => __awaiter(void 0, void 0, void 0, function* () {
         // console.log('Message from server ', event.data);
@@ -47,6 +49,7 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState) => {
                 yield RTCMediaStream.addIceCandidate(messageData.data.candidate);
                 break;
             case "CATCH_TEXT_MESSAGE":
+                (0, addMessage_js_1.addMessage)(messageData.data.message, "you");
                 break;
         }
     }));
