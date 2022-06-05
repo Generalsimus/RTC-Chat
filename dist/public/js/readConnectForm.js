@@ -16,27 +16,18 @@ const readConnectForm = () => __awaiter(void 0, void 0, void 0, function* () {
     const joinChatButton = document.querySelector('.join-chat-button');
     const chatFormContainerTag = document.querySelector('.join-chat-form');
     const chatMessengerContainer = document.querySelector('.chat-container');
+    const chatMessagingLang = document.querySelector('.chat-messaging-lang');
     const convertValue = (v) => v.trim().toLowerCase();
     const nameState = {
         myName: undefined,
         yourName: undefined,
+        language: undefined,
     };
-    // myNameInput.addEventListener('change', (e) => {
-    //     nameState.myName = convertValue(myNameInput.value);
-    // })
-    // myNameInput.addEventListener('input', (e) => {
-    //     nameState.myName = convertValue(myNameInput.value);
-    // })
-    // yourNameInput.addEventListener('change', (e) => {
-    //     nameState.yourName = convertValue(yourNameInput.value);
-    // })
-    // yourNameInput.addEventListener('input', (e) => {
-    //     nameState.yourName = convertValue(yourNameInput.value);
-    // })
     chatFormContainerTag.addEventListener('submit', (e) => {
         e.preventDefault();
         nameState.myName = convertValue(myNameInput.value);
         nameState.yourName = convertValue(yourNameInput.value);
+        nameState.language = convertValue(chatMessagingLang.value);
         chatFormContainerTag.style.display = 'none';
         chatMessengerContainer.style.display = 'flex';
     });

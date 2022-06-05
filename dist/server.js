@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,7 +25,7 @@ const webSocketServer = new ws_1.default.Server({ server: server, path: "/sw" })
 const clientsByName = new Map();
 webSocketServer.on('connection', (client) => {
     const SENT = (data, netClient) => (netClient || client).send(JSON.stringify({ data }));
-    client.on('message', (dataString) => {
+    client.on('message', (dataString) => __awaiter(void 0, void 0, void 0, function* () {
         const messageData = JSON.parse(dataString);
         const paraClient = clientsByName.get(messageData.connectToName);
         switch (messageData.data.type) {
@@ -49,10 +58,24 @@ webSocketServer.on('connection', (client) => {
                 }
                 break;
             case "CATCH_TEXT_MESSAGE":
+                const language = messageData.language;
+                const translateString = messageData.data.message;
+                const translatedText = language && translateString;
                 if (paraClient) {
-                    SENT({ type: "CATCH_TEXT_MESSAGE", message: messageData.data.message }, paraClient);
+                    SENT({
+                        type: "CATCH_TEXT_MESSAGE",
+                        author: messageData.author,
+                        originalMessage: messageData.data.message,
+                        message: translatedText || messageData.data.message,
+                    }, paraClient);
                 }
+                SENT({
+                    type: "CATCH_TEXT_MESSAGE",
+                    author: messageData.author,
+                    originalMessage: messageData.data.message,
+                    message: translatedText || messageData.data.message,
+                });
                 break;
         }
-    });
+    }));
 });

@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebSocket = void 0;
+const addLoader_js_1 = require("./addLoader.js");
 const cerateChatMessenger_js_1 = require("./cerateChatMessenger.js");
 const createWebSockMessageListener_js_1 = require("./createWebSockMessageListener.js");
 const createWebSocketServer = () => {
@@ -19,32 +20,39 @@ const createWebSocketServer = () => {
 };
 const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, void 0, void 0, function* () {
     let socket;
+    const loader = (0, addLoader_js_1.addLoader)();
     const webSockState = {
         sendData(data = {}) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (!socket || socket.readyState === WebSocket.CLOSED) {
+                    loader.start();
+                    loader.setMessage("Connecting...");
                     socket = createWebSocketServer();
-                    yield new Promise((resolve, reject) => socket.addEventListener('open', resolve));
-                    webSockState.sendData({
-                        type: "GET_RTC_OFFER"
-                    });
-                    (0, createWebSockMessageListener_js_1.createWebSockMessageListener)(socket, RTCMediaStream, webSockState);
+                    yield new Promise((resolve, reject) => (socket.addEventListener('open', resolve)));
+                    (0, createWebSockMessageListener_js_1.createWebSockMessageListener)(socket, RTCMediaStream, webSockState, connectFormState);
                     socket.addEventListener('close', function (event) {
                         webSockState.sendData({
                             type: "INIT_CLIENT_CONNECT"
                         });
                     });
+                    loader.end();
                 }
                 socket.send(JSON.stringify({
                     author: connectFormState.myName,
                     connectToName: connectFormState.yourName,
+                    language: connectFormState.language,
                     data: data
                 }));
             });
         }
     };
-    webSockState.sendData({
+    yield webSockState.sendData({
         type: "INIT_CLIENT_CONNECT"
+    });
+    loader.start();
+    loader.setMessage("Waiting Offer...");
+    yield webSockState.sendData({
+        type: "GET_RTC_OFFER"
     });
     (0, cerateChatMessenger_js_1.cerateChatMessenger)(webSockState);
     return webSockState;

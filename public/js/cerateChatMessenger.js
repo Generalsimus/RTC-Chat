@@ -12,7 +12,6 @@ export const cerateChatMessenger = (webSockState) => {
             message: convertValue(inputTag.value)
         });
 
-        addMessage(inputTag.value, "me");
 
         inputTag.value = ""
         inputTag.focus();

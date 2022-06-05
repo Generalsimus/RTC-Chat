@@ -15,11 +15,21 @@
   <form class="join-chat-form">
     <input type="text" class="my-join-name" placeholder="Your Name" required />
     <input type="text" class="your-join-name" placeholder="My Name" required />
+    <input class="chat-messaging-lang" list="Languages" placeholder="Chat Languages">
+    <datalist id="Languages">
+      <option value="ka" label="Georgian (ka)">
+      <option value="uk" label="Ukrainian (uk)">
+      <option value="en" label="United Kingdom (en)">
+      <option value="en" label="United State (en)">
+    </datalist>
     <button class="join-chat-button" type="submit">Join Chat</button>
   </form>
 
 
-
+  <div class="loading-progress-on">
+    <div class="spin"></div>
+    <span class="loading-text"></span>
+  </div>
 
 
   <div class="chat-container">
@@ -28,58 +38,6 @@
     <div class="chat-box">
       <div class="chat-messages">
         <div class="chat-start-messaging-here" style="display: none;"></div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-me">hi<div class="chat-message-time"> 12:10</div>
-        </div>
-        <div class="chat-message-you">hello <div class="chat-message-time"> 01:10</div>
-        </div>
       </div>
       <form class="chat-form">
         <input class="chat-text-input" type="text" />

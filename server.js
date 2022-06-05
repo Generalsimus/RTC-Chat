@@ -3,7 +3,6 @@ import express from 'express'
 import path from 'path';
 import WebSocket from 'ws'
 
-
 export const globalRootDir = path.join(__dirname, '../');
 
 
@@ -23,7 +22,7 @@ webSocketServer.on('connection', (client) => {
     const SENT = (data, netClient) => (netClient || client).send(JSON.stringify({ data }));
 
 
-    client.on('message', (dataString) => {
+    client.on('message', async (dataString) => {
         const messageData = JSON.parse(dataString);
         const paraClient = clientsByName.get(messageData.connectToName);
 
@@ -58,9 +57,26 @@ webSocketServer.on('connection', (client) => {
                 }
                 break;
             case "CATCH_TEXT_MESSAGE":
+                const language = messageData.language;
+                const translateString = messageData.data.message
+
+                const translatedText = language && translateString;
+
+
                 if (paraClient) {
-                    SENT({ type: "CATCH_TEXT_MESSAGE", message: messageData.data.message }, paraClient);
+                    SENT({
+                        type: "CATCH_TEXT_MESSAGE",
+                        author: messageData.author,
+                        originalMessage: messageData.data.message,
+                        message: translatedText || messageData.data.message,
+                    }, paraClient);
                 }
+                SENT({
+                    type: "CATCH_TEXT_MESSAGE",
+                    author: messageData.author,
+                    originalMessage: messageData.data.message,
+                    message: translatedText || messageData.data.message,
+                });
                 break;
         }
     });
