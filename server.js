@@ -30,7 +30,11 @@ webSocketServer.on('connection', (client) => {
         switch (messageData.data.type) {
             case 'INIT_CLIENT_CONNECT':
                 clientsByName.set(messageData.author, client);
-                client.on('disconnect', () => clientsByName.delete(messageData.author));
+                client.on('disconnect', () => {
+                    if (clientsByName.has(messageData.author)) {
+                        clientsByName.delete(messageData.author);
+                    }
+                })
                 break;
             case "GET_RTC_OFFER":
                 if (paraClient) {
