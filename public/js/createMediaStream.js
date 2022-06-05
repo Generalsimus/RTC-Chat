@@ -17,7 +17,13 @@ export const createMediaStream = async (peerConnection) => {
             remoteStream.addTrack(track);
         });
     };
-
+    peerConnection.onaddstream = function (event) {
+        console.log("this function is called")
+        // var video2 = document.getElementById("video2")
+        // remoteVideoTag.srcObject = event.stream;
+        // video2.src = window.URL.createObjectURL(event.stream)
+        // video2.play()
+    }
 
     localVideoTag.srcObject = localStream;
     remoteVideoTag.srcObject = remoteStream;

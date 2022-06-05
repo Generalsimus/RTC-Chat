@@ -26,7 +26,29 @@ const servers = {
     iceCandidatePoolSize: 10,
 };
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
-    const peerConnection = new RTCPeerConnection(servers);
+    // const peerConnection = new RTCPeerConnection(servers);
+    const peerConnection = new RTCPeerConnection({
+        iceServers: [
+            {
+                urls: "stun:openrelay.metered.ca:80",
+            },
+            {
+                urls: "turn:openrelay.metered.ca:80",
+                username: "openrelayproject",
+                credential: "openrelayproject",
+            },
+            {
+                urls: "turn:openrelay.metered.ca:443",
+                username: "openrelayproject",
+                credential: "openrelayproject",
+            },
+            {
+                urls: "turn:openrelay.metered.ca:443?transport=tcp",
+                username: "openrelayproject",
+                credential: "openrelayproject",
+            },
+        ],
+    });
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
     return {
         createOffer() {
