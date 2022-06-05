@@ -13,7 +13,14 @@ exports.createMediaStream = void 0;
 const createMediaStream = (peerConnection) => __awaiter(void 0, void 0, void 0, function* () {
     const localVideoTag = document.querySelector('.local-video');
     const remoteVideoTag = document.querySelector('.remote-video');
-    const localStream = yield navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    const localStream = yield navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: {
+            width: { ideal: 1280 },
+            height: { ideal: 1024 },
+            facingMode: "environment"
+        }
+    });
     const remoteStream = new MediaStream();
     // Push tracks from local stream to peer connection
     localStream.getTracks().forEach((track) => {
@@ -25,13 +32,6 @@ const createMediaStream = (peerConnection) => __awaiter(void 0, void 0, void 0, 
         event.streams[0].getTracks().forEach((track) => {
             remoteStream.addTrack(track);
         });
-    };
-    peerConnection.onaddstream = function (event) {
-        console.log("this function is called");
-        // var video2 = document.getElementById("video2")
-        // remoteVideoTag.srcObject = event.stream;
-        // video2.src = window.URL.createObjectURL(event.stream)
-        // video2.play()
     };
     localVideoTag.srcObject = localStream;
     remoteVideoTag.srcObject = remoteStream;

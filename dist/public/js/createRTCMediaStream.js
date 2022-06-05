@@ -14,7 +14,29 @@ const createMediaStream_js_1 = require("./createMediaStream.js");
 const servers = {
     iceServers: [
         {
-            urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+            url: 'turn:numb.viagenie.ca',
+            credential: 'muazkh',
+            username: 'webrtc@live.com'
+        },
+        {
+            url: 'turn:192.158.29.39:3478?transport=udp',
+            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+            username: '28224511:1379330808'
+        },
+        {
+            url: 'turn:192.158.29.39:3478?transport=tcp',
+            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+            username: '28224511:1379330808'
+        },
+        {
+            url: 'turn:turn.bistri.com:80',
+            credential: 'homeo',
+            username: 'homeo'
+        },
+        {
+            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+            credential: 'webrtc',
+            username: 'webrtc'
         },
         { urls: "stun:stun.l.google.com:19302" },
         { urls: "stun:stun.services.mozilla.com" },
@@ -22,47 +44,11 @@ const servers = {
         { url: "stun:stun.l.google.com:19302" },
         { url: "stun:stun.services.mozilla.com" },
         { url: "stun:stun.stunprotocol.org:3478" },
-    ],
-    iceCandidatePoolSize: 10,
+    ]
 };
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection({
-        iceServers: [
-            {
-                url: 'turn:numb.viagenie.ca',
-                credential: 'muazkh',
-                username: 'webrtc@live.com'
-            },
-            {
-                url: 'turn:192.158.29.39:3478?transport=udp',
-                credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-                username: '28224511:1379330808'
-            },
-            {
-                url: 'turn:192.158.29.39:3478?transport=tcp',
-                credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-                username: '28224511:1379330808'
-            },
-            {
-                url: 'turn:turn.bistri.com:80',
-                credential: 'homeo',
-                username: 'homeo'
-            },
-            {
-                url: 'turn:turn.anyfirewall.com:443?transport=tcp',
-                credential: 'webrtc',
-                username: 'webrtc'
-            },
-            { urls: "stun:stun.l.google.com:19302" },
-            { urls: "stun:stun.services.mozilla.com" },
-            { urls: "stun:stun.stunprotocol.org:3478" },
-            { url: "stun:stun.l.google.com:19302" },
-            { url: "stun:stun.services.mozilla.com" },
-            { url: "stun:stun.stunprotocol.org:3478" },
-        ],
-        iceCandidatePoolSize: 10,
-    });
+    const peerConnection = new RTCPeerConnection(servers);
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
     return {
         createOffer() {
