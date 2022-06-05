@@ -17,8 +17,8 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
                 type: "INIT_CLIENT_CONNECT"
             })
         }
-        setInterval(initUser, 5000)
-        
+        setInterval(initUser, 60 * 1000)
+
         initUser();
         webSockState.sendData({
             type: "GET_RTC_OFFER"

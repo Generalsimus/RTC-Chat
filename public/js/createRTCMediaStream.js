@@ -11,7 +11,7 @@ const servers = {
         { url: "stun:stun.l.google.com:19302" },
         { url: "stun:stun.services.mozilla.com" },
         { url: "stun:stun.stunprotocol.org:3478" },
-        
+
     ],
     iceCandidatePoolSize: 10,
 };
@@ -20,6 +20,15 @@ export const createRTCMediaStream = async () => {
     // const peerConnection = new RTCPeerConnection(servers);
     const peerConnection = new RTCPeerConnection({
         iceServers: [
+            {
+                urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+            },
+            { urls: "stun:stun.l.google.com:19302" },
+            { urls: "stun:stun.services.mozilla.com" },
+            { urls: "stun:stun.stunprotocol.org:3478" },
+            { url: "stun:stun.l.google.com:19302" },
+            { url: "stun:stun.services.mozilla.com" },
+            { url: "stun:stun.stunprotocol.org:3478" },
             {
                 urls: "stun:openrelay.metered.ca:80",
             },
