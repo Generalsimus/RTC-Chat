@@ -29,6 +29,7 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
             });
         };
         setInterval(initUser, 5000);
+        initUser();
         webSockState.sendData({
             type: "GET_RTC_OFFER"
         });
