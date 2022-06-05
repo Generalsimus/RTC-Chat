@@ -56,9 +56,32 @@ const coolServers = {
     iceTransportPolicy: "all",
     rtcpMuxPolicy: "require"
 };
+const talkyIoServers = {
+    bundlePolicy: "balanced",
+    iceServers: [
+        {
+            credential: "H2sv4iA6rHn/XSR1I0eNJdQ/m1I=",
+            urls: ['turn:ice.simplewebrtc.com:3478'],
+            username: "1654550683:talky/001b6704-22c6-482a-9d8b-543b6a655a9a"
+        },
+        {
+            credential: "H2sv4iA6rHn/XSR1I0eNJdQ/m1I=",
+            urls: ['turn:ice.simplewebrtc.com:3478?transport=tcp'],
+            username: "1654550683:talky/001b6704-22c6-482a-9d8b-543b6a655a9a"
+        },
+        {
+            credential: "H2sv4iA6rHn/XSR1I0eNJdQ/m1I=",
+            urls: ['turns:ice.simplewebrtc.com:443?transport=tcp'],
+            username: "1654550683:talky/001b6704-22c6-482a-9d8b-543b6a655a9a"
+        }
+    ],
+    iceTransportPolicy: "all",
+    rtcpMuxPolicy: "require",
+    sdpSemantics: undefined
+};
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection(coolServers);
+    const peerConnection = new RTCPeerConnection(talkyIoServers);
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
     return {
         createOffer() {
