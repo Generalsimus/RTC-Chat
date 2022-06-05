@@ -47,15 +47,7 @@ const coolServers = {
 }
 export const createRTCMediaStream = async () => {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection({
-        bundlePolicy: "balanced",
-        iceServers: [{
-            urls: "stun:stun.l.google.com:19302"
-        }],
-        iceTransportPolicy: "all",
-        rtcpMuxPolicy: "require",
-        trickleIce: !0
-    });
+    const peerConnection = new RTCPeerConnection(coolServers);
     const { } = createMediaStream(peerConnection);
 
     return {
