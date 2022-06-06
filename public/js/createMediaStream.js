@@ -1,15 +1,25 @@
+import { createAudioTagController } from "./createAudioTagController.js";
+
 export const createMediaStream = async (peerConnection) => {
     const localVideoTag = document.querySelector('.local-video');
     const remoteVideoTag = document.querySelector('.remote-video');
+    const audioTagController = createAudioTagController()
 
     const localStream = await navigator.mediaDevices.getUserMedia({
         audio: true,
         video: {
             width: { ideal: 1280 },
-            height: { ideal: 1024 },
-            facingMode: "environment"
+            height: { ideal: 1024 }
         }
     });
+    audioTagController.addEventListener("click", () => {
+        audioTagController.toggleStatus();
+        const tracks = localStream.getAudioTracks();
+        tracks.forEach(el => {
+            el.enabled = audioTagController.status;
+        });
+    })
+    // setAudioStatusVisual
     const remoteStream = new MediaStream();
 
     // Push tracks from local stream to peer connection

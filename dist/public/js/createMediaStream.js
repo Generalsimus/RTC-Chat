@@ -10,17 +10,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createMediaStream = void 0;
+const createAudioTagController_js_1 = require("./createAudioTagController.js");
 const createMediaStream = (peerConnection) => __awaiter(void 0, void 0, void 0, function* () {
     const localVideoTag = document.querySelector('.local-video');
     const remoteVideoTag = document.querySelector('.remote-video');
+    const audioTagController = (0, createAudioTagController_js_1.createAudioTagController)();
     const localStream = yield navigator.mediaDevices.getUserMedia({
         audio: true,
         video: {
             width: { ideal: 1280 },
-            height: { ideal: 1024 },
-            facingMode: "environment"
+            height: { ideal: 1024 }
         }
     });
+    audioTagController.addEventListener("click", () => {
+        audioTagController.toggleStatus();
+        const tracks = localStream.getAudioTracks();
+        tracks.forEach(el => {
+            el.enabled = audioTagController.status;
+        });
+    });
+    // setAudioStatusVisual
     const remoteStream = new MediaStream();
     // Push tracks from local stream to peer connection
     localStream.getTracks().forEach((track) => {

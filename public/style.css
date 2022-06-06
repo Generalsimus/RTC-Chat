@@ -45,14 +45,42 @@ body {
   height: calc(1080/1920 * var(--box-width));
   max-width: 100%;
   max-height: 100%;
-  /* min-width: var(--min-width);
-  min-height: calc(1080/1920 * var(--min-width)); */
-  background: #ff000a;
+  /* background: #ff000a; */
+  background: black;
   border: 2px solid #8070d4;
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
   justify-content: center;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 1400px) {
+
+  .chat-container {
+    --box-width: 80vw;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+
+  .chat-container {
+    --box-width: 85vw;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+
+  .chat-container {
+    --box-width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  .chat-container {
+    width: 100%;
+    height: 100%
+  }
 }
 
 /* @media only screen and (max-width: 1000px) {
@@ -77,16 +105,25 @@ body {
   }
 } */
 
-.chat-container .local-video {
+.chat-container .local-video-box {
+  /* --box-width: 200px; */
   top: -2px;
   right: -2px;
   position: absolute;
-  width: 20%;
+  /* width: 200px; */
   z-index: 5;
   border: 2px solid #8070d4;
-  border-radius: 0px 20px 0px 20px;
-  min-width: 200px;
+  /* border-radius: 0px 20px 0px 20px; */
   background: black;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.chat-container .local-video-box video {
+  --box-width: 200px;
+  /* width: var(--box-width); */
+  height: calc(1080/1920 * var(--box-width));
 }
 
 .chat-container .remote-video {
@@ -95,14 +132,13 @@ body {
 }
 
 .chat-container .chat-box {
-  z-index: 2;
+  z-index: 5;
   width: 100%;
   height: 50vh;
   position: absolute;
   bottom: 0;
   left: 0;
   background: linear-gradient(0deg, #f8f9fa2e, rgba(248, 249, 250, 0) 100%);
-
 }
 
 .chat-box {
@@ -240,4 +276,12 @@ body {
   font-size: 12px;
   font-weight: bold;
   color: #0000007d;
+}
+
+.control-self-video {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 10px;
 }

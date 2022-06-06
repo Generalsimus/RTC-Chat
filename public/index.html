@@ -12,7 +12,7 @@
 <body>
 
   <!-- style="display:none" -->
-  <form class="join-chat-form"  >
+  <form class="join-chat-form" >
     <input type="text" class="my-join-name" placeholder="Your Name" required />
     <input type="text" class="your-join-name" placeholder="My Name" required />
     <input class="chat-messaging-lang" list="Languages" placeholder="Chat Languages">
@@ -33,9 +33,15 @@
 
 
   <!-- style="display:block" -->
-  <div class="chat-container"    >
-    <video class="remote-video" autoplay playsinline></video>
-    <video class="local-video" autoplay playsinline muted></video>
+  <div class="chat-container" >
+    <video class="remote-video" autoplay playsinline muted></video>
+    <div class="local-video-box">
+      <video class="local-video" autoplay playsinline muted></video>
+      <div class="control-self-video">
+        <div class="mute-video-cam">mute</div>
+        <!-- <div class="reverse-video-cam">revers</div> -->
+      </div>
+    </div>
     <div class="chat-box">
       <div class="chat-messages">
         <div class="chat-start-messaging-here" style="display: none;"></div>
