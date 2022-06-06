@@ -60,6 +60,7 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, conn
                         type: "SEND_ANSWER_FOR_OFFER_CREATOR",
                         answer: answer
                     });
+                    loader.end();
                 }));
                 break;
             case "CATCH_ANSWER":

@@ -39,7 +39,7 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
                         type: "SEND_CREATED_OFFER",
                         offer: offer
                     });
-                })
+                });
                 break;
             case "GET_ANSWER_OF_OFFER":
                 loader.start("Send Answer...");
@@ -50,6 +50,7 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
                         type: "SEND_ANSWER_FOR_OFFER_CREATOR",
                         answer: answer
                     });
+                    loader.end();
                 })
                 break;
             case "CATCH_ANSWER":
