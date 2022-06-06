@@ -14,6 +14,7 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
             await webSockState.sendData({
                 type: "GET_RTC_OFFER"
             });
+            loader.end();
         }
     };
     // Listen for messages
@@ -50,7 +51,6 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
                         type: "SEND_ANSWER_FOR_OFFER_CREATOR",
                         answer: answer
                     });
-                    loader.end();
                 })
                 break;
             case "CATCH_ANSWER":
