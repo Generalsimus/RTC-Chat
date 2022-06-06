@@ -73,7 +73,7 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
                 });
                 break;
             case "CATCH_TRANSLATED_TEXT_MESSAGE":
-                const authorIndex = connectFormState.myName === messageData.data.author ? "me" : "you"
+                const authorIndex = connectFormState.myName === messageData.data.author ? "me" : "you";
                 addMessage(messageData.data.translatedMessage, messageData.data.originalMessage, authorIndex);
                 break;
         }
