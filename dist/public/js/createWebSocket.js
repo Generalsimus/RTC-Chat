@@ -25,8 +25,7 @@ const createWebSocket = (RTCMediaStream, connectFormState) => __awaiter(void 0, 
         sendData(data = {}) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (!socket || socket.readyState === WebSocket.CLOSED) {
-                    loader.start();
-                    loader.setMessage("Connecting...");
+                    loader.start("Connecting...");
                     socket = createWebSocketServer();
                     yield new Promise((resolve, reject) => (socket.addEventListener('open', resolve)));
                     (0, createWebSockMessageListener_js_1.createWebSockMessageListener)(socket, RTCMediaStream, webSockState, connectFormState);

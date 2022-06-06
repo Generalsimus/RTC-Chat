@@ -44,17 +44,18 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, conn
         switch (messageData.data.type) {
             case "GET_RTC_OFFER":
                 loader.start("Waiting answer...");
-                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                yield callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
                     const offer = yield RTCMediaStream.createOffer();
                     yield webSockState.sendData({
                         type: "SEND_CREATED_OFFER",
                         offer: offer
                     });
                 }));
+                loader.end();
                 break;
             case "GET_ANSWER_OF_OFFER":
                 loader.start("Send Answer...");
-                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                yield callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
                     yield RTCMediaStream.catchOffer(messageData.data.offer);
                     const answer = yield RTCMediaStream.createAnswer();
                     webSockState.sendData({
@@ -62,16 +63,17 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, conn
                         answer: answer
                     });
                 }));
+                loader.end();
                 break;
             case "CATCH_ANSWER":
                 loader.start("Waiting candidate...");
-                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                yield callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
                     yield RTCMediaStream.catchAnswer(messageData.data.answer);
                 }));
+                loader.end();
                 break;
             case "ADD_ICE_CANDIDATE":
-                loader.end();
-                callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
+                yield callSafe(() => __awaiter(void 0, void 0, void 0, function* () {
                     yield RTCMediaStream.addIceCandidate(messageData.data.candidate);
                 }));
                 break;

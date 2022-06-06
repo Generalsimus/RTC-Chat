@@ -14,8 +14,7 @@ export const createWebSocket = async (RTCMediaStream, connectFormState) => {
     const webSockState = {
         async sendData(data = {}) {
             if (!socket || socket.readyState === WebSocket.CLOSED) {
-                loader.start();
-                loader.setMessage("Connecting...");
+                loader.start("Connecting...");
 
                 socket = createWebSocketServer();
 

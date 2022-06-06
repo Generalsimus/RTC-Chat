@@ -34,34 +34,36 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
         switch (messageData.data.type) {
             case "GET_RTC_OFFER":
                 loader.start("Waiting answer...");
-                callSafe(async () => {
+                await callSafe(async () => {
                     const offer = await RTCMediaStream.createOffer();
                     await webSockState.sendData({
                         type: "SEND_CREATED_OFFER",
                         offer: offer
                     });
                 });
+                loader.end();
                 break;
             case "GET_ANSWER_OF_OFFER":
                 loader.start("Send Answer...");
-                callSafe(async () => {
+                await callSafe(async () => {
                     await RTCMediaStream.catchOffer(messageData.data.offer);
                     const answer = await RTCMediaStream.createAnswer();
                     webSockState.sendData({
                         type: "SEND_ANSWER_FOR_OFFER_CREATOR",
                         answer: answer
                     });
-                })
+                });
+                loader.end();
                 break;
             case "CATCH_ANSWER":
                 loader.start("Waiting candidate...");
-                callSafe(async () => {
+                await callSafe(async () => {
                     await RTCMediaStream.catchAnswer(messageData.data.answer);
                 });
+                loader.end();
                 break;
             case "ADD_ICE_CANDIDATE":
-                loader.end();
-                callSafe(async () => {
+                await callSafe(async () => {
                     await RTCMediaStream.addIceCandidate(messageData.data.candidate);
                 })
                 break;
