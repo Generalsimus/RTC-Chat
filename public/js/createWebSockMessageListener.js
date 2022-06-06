@@ -2,6 +2,7 @@ import { addLoader } from "./addLoader.js";
 import { addMessage } from "./addMessage.js";
 
 export const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, connectFormState) => {
+    const loader = addLoader();
     const callSafe = async (callBack) => {
         try {
             await callBack();
@@ -18,7 +19,6 @@ export const createWebSockMessageListener = (socket, RTCMediaStream, webSockStat
     // Listen for messages
     socket.addEventListener('message', async (event) => {
         // console.log('Message from server ', event.data); 
-        const loader = addLoader();
         const messageData = JSON.parse(event.data);
         await RTCMediaStream.addIceCandidateListener((event) => {
             if (event.candidate) {

@@ -13,6 +13,7 @@ exports.createWebSockMessageListener = void 0;
 const addLoader_js_1 = require("./addLoader.js");
 const addMessage_js_1 = require("./addMessage.js");
 const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, connectFormState) => {
+    const loader = (0, addLoader_js_1.addLoader)();
     const callSafe = (callBack) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             yield callBack();
@@ -30,7 +31,6 @@ const createWebSockMessageListener = (socket, RTCMediaStream, webSockState, conn
     // Listen for messages
     socket.addEventListener('message', (event) => __awaiter(void 0, void 0, void 0, function* () {
         // console.log('Message from server ', event.data); 
-        const loader = (0, addLoader_js_1.addLoader)();
         const messageData = JSON.parse(event.data);
         yield RTCMediaStream.addIceCandidateListener((event) => {
             if (event.candidate) {
