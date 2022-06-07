@@ -60,19 +60,19 @@ const talkyIoServers = {
     bundlePolicy: "balanced",
     iceServers: [
         {
-            credential: "H2sv4iA6rHn/XSR1I0eNJdQ/m1I=",
+            credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
             urls: ['turn:ice.simplewebrtc.com:3478'],
-            username: "1654550683:talky/001b6704-22c6-482a-9d8b-543b6a655a9a"
+            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
         },
         {
-            credential: "H2sv4iA6rHn/XSR1I0eNJdQ/m1I=",
+            credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
             urls: ['turn:ice.simplewebrtc.com:3478?transport=tcp'],
-            username: "1654550683:talky/001b6704-22c6-482a-9d8b-543b6a655a9a"
+            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
         },
         {
-            credential: "H2sv4iA6rHn/XSR1I0eNJdQ/m1I=",
+            credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
             urls: ['turns:ice.simplewebrtc.com:443?transport=tcp'],
-            username: "1654550683:talky/001b6704-22c6-482a-9d8b-543b6a655a9a"
+            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
         }
     ],
     iceTransportPolicy: "all",
@@ -81,7 +81,7 @@ const talkyIoServers = {
 };
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection(talkyIoServers);
+    const peerConnection = new FF(talkyIoServers);
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
     return {
         createOffer() {
