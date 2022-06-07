@@ -18,8 +18,8 @@ const createMediaStream = (peerConnection) => __awaiter(void 0, void 0, void 0, 
     const localStream = yield navigator.mediaDevices.getUserMedia({
         audio: true,
         video: {
-            width: { ideal: 1280 },
-            height: { ideal: 1024 }
+            width: { min: 1024, ideal: 1280, max: 1920 },
+            height: { min: 576, ideal: 720, max: 1080 }
         }
     });
     audioTagController.addEventListener("click", () => {
@@ -43,7 +43,8 @@ const createMediaStream = (peerConnection) => __awaiter(void 0, void 0, void 0, 
         });
     };
     localVideoTag.srcObject = localStream;
-    remoteVideoTag.srcObject = remoteStream;
+    remoteVideoTag.srcObject = localStream;
+    // remoteVideoTag.srcObject = remoteStream;
     return {
         localStream,
         remoteStream

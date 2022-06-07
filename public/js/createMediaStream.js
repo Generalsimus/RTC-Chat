@@ -8,8 +8,8 @@ export const createMediaStream = async (peerConnection) => {
     const localStream = await navigator.mediaDevices.getUserMedia({
         audio: true,
         video: {
-            width: { ideal: 1280 },
-            height: { ideal: 1024 }
+            width: { min: 1024, ideal: 1280, max: 1920 },
+            height: { min: 576, ideal: 720, max: 1080 }
         }
     });
     audioTagController.addEventListener("click", () => {
@@ -36,7 +36,8 @@ export const createMediaStream = async (peerConnection) => {
     };
 
     localVideoTag.srcObject = localStream;
-    remoteVideoTag.srcObject = remoteStream;
+    remoteVideoTag.srcObject = localStream;
+    // remoteVideoTag.srcObject = remoteStream;
 
     return {
         localStream,
