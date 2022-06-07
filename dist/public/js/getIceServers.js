@@ -21,19 +21,18 @@ const getIceServers = () => __awaiter(void 0, void 0, void 0, function* () {
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
         },
     });
-    const iceServers = ((_a = (yield (response === null || response === void 0 ? void 0 : response.json()))) === null || _a === void 0 ? void 0 : _a.iceServers) || [{
-            "urls": [
-                "turn:numb.viagenie.ca"
-            ],
-            credential: 'muazkh',
-            username: 'webrtc@live.com'
-        }];
-    return {
+    const iceServers = (_a = (yield (response === null || response === void 0 ? void 0 : response.json()))) === null || _a === void 0 ? void 0 : _a.iceServers;
+    return iceServers || {
         bundlePolicy: "balanced",
-        iceServers: iceServers,
+        iceServers: [{
+                "urls": [
+                    "turn:numb.viagenie.ca"
+                ],
+                credential: 'muazkh',
+                username: 'webrtc@live.com'
+            }],
         iceTransportPolicy: "all",
         rtcpMuxPolicy: "require",
         sdpSemantics: undefined

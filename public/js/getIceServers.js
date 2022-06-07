@@ -8,20 +8,19 @@ export const getIceServers = async () => {
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
         },
     })
-    const iceServers = (await response?.json())?.iceServers || [{
-        "urls": [
-            "turn:numb.viagenie.ca"
-        ],
-        credential: 'muazkh',
-        username: 'webrtc@live.com'
-    }];
+    const iceServers = (await response?.json())?.iceServers
 
-    return {
+    return iceServers || {
         bundlePolicy: "balanced",
-        iceServers: iceServers,
+        iceServers: [{
+            "urls": [
+                "turn:numb.viagenie.ca"
+            ],
+            credential: 'muazkh',
+            username: 'webrtc@live.com'
+        }],
         iceTransportPolicy: "all",
         rtcpMuxPolicy: "require",
         sdpSemantics: undefined
