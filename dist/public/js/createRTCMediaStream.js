@@ -79,13 +79,21 @@ const talkyIoServers = {
     rtcpMuxPolicy: "require",
     sdpSemantics: undefined
 };
+/*
+მუშა სერვერები
+{
+        "urls": [
+            "turn:numb.viagenie.ca"
+        ],
+        credential: 'muazkh',
+        username: 'webrtc@live.com'
+    }
+*/
 const serverTest = {
     iceServers: [{
             "urls": [
-                "turn:numb.viagenie.ca"
+                "turn:openrelay.metered.ca:80"
             ],
-            credential: 'muazkh',
-            username: 'webrtc@live.com'
         }]
 };
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {

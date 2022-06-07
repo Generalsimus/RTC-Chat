@@ -68,13 +68,22 @@ const talkyIoServers = {
     rtcpMuxPolicy: "require",
     sdpSemantics: undefined
 }
-const serverTest = {
-    iceServers: [{
+
+/*
+მუშა სერვერები
+{
         "urls": [
             "turn:numb.viagenie.ca"
         ],
         credential: 'muazkh',
         username: 'webrtc@live.com'
+    }
+*/
+const serverTest = {
+    iceServers: [{
+        "urls": [
+            "turn:openrelay.metered.ca:80"
+        ],
     }]
 }
 export const createRTCMediaStream = async () => {
