@@ -7,10 +7,7 @@ export const createMediaStream = async (peerConnection) => {
 
     const localStream = await navigator.mediaDevices.getUserMedia({
         audio: true,
-        video: {
-            width: { min: 1024, ideal: 1280, max: 1920 },
-            height: { min: 576, ideal: 720, max: 1080 }
-        }
+        video: true
     });
     audioTagController.addEventListener("click", () => {
         audioTagController.toggleStatus();
@@ -29,7 +26,6 @@ export const createMediaStream = async (peerConnection) => {
 
     // Pull tracks from remote stream, add to video stream
     peerConnection.ontrack = (event) => {
-        console.log("🚀 --> file: createMediaStream.js --> line 15 --> createMediaStream --> event", event);
         event.streams[0].getTracks().forEach((track) => {
             remoteStream.addTrack(track);
         });
