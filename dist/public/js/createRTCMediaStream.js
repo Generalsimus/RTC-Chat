@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createRTCMediaStream = void 0;
 const createMediaStream_js_1 = require("./createMediaStream.js");
+const getIceServers_js_1 = require("./getIceServers.js");
 const servers = {
     iceServers: [
         {
@@ -60,45 +61,29 @@ const talkyIoServers = {
     bundlePolicy: "balanced",
     iceServers: [
         {
-            credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
+            credential: "ghrAuzBjSoEGsk+hy1wRjZRWqMQ=",
             urls: ['turn:ice.simplewebrtc.com:3478'],
-            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
+            username: "1654705608:talky/61d95286-90e2-4cee-9332-86052ff412d1"
         },
         {
             credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
             urls: ['turn:ice.simplewebrtc.com:3478?transport=tcp'],
-            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
+            username: "1654705608:talky/61d95286-90e2-4cee-9332-86052ff412d1"
         },
         {
             credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
             urls: ['turns:ice.simplewebrtc.com:443?transport=tcp'],
-            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
+            username: "1654705608:talky/61d95286-90e2-4cee-9332-86052ff412d1"
         }
     ],
     iceTransportPolicy: "all",
     rtcpMuxPolicy: "require",
     sdpSemantics: undefined
 };
-/*
-მუშა სერვერები
-{
-        "urls": [
-            "turn:numb.viagenie.ca"
-        ],
-        credential: 'muazkh',
-        username: 'webrtc@live.com'
-    }
-*/
-const serverTest = {
-    iceServers: [{
-            "urls": [
-                "turn:openrelay.metered.ca:80"
-            ],
-        }]
-};
 const createRTCMediaStream = () => __awaiter(void 0, void 0, void 0, function* () {
-    // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection(serverTest);
+    const rtcOptions = yield (0, getIceServers_js_1.getIceServers)();
+    console.log("🚀 --> file: createRTCMediaStream.js --> line 76 --> createRTCMediaStream --> rtcOptions", rtcOptions);
+    const peerConnection = new RTCPeerConnection(rtcOptions);
     const {} = (0, createMediaStream_js_1.createMediaStream)(peerConnection);
     return {
         createOffer() {

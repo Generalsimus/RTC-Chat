@@ -1,4 +1,5 @@
 import { createMediaStream } from "./createMediaStream.js";
+import { getIceServers } from "./getIceServers.js";
 
 const servers = {
     iceServers: [
@@ -49,19 +50,19 @@ const talkyIoServers = {
     bundlePolicy: "balanced",
     iceServers: [
         {
-            credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
+            credential: "ghrAuzBjSoEGsk+hy1wRjZRWqMQ=",
             urls: ['turn:ice.simplewebrtc.com:3478'],
-            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
+            username: "1654705608:talky/61d95286-90e2-4cee-9332-86052ff412d1"
         },
         {
             credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
             urls: ['turn:ice.simplewebrtc.com:3478?transport=tcp'],
-            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
+            username: "1654705608:talky/61d95286-90e2-4cee-9332-86052ff412d1"
         },
         {
             credential: "NFq09Qn9Rfc6J3BUhFRnj+6j680=",
             urls: ['turns:ice.simplewebrtc.com:443?transport=tcp'],
-            username: "1654678429:talky/8dafa117-15d9-4b1d-84be-dcff00ec6162"
+            username: "1654705608:talky/61d95286-90e2-4cee-9332-86052ff412d1"
         }
     ],
     iceTransportPolicy: "all",
@@ -69,26 +70,11 @@ const talkyIoServers = {
     sdpSemantics: undefined
 }
 
-/*
-მუშა სერვერები
-{
-        "urls": [
-            "turn:numb.viagenie.ca"
-        ],
-        credential: 'muazkh',
-        username: 'webrtc@live.com'
-    }
-*/
-const serverTest = {
-    iceServers: [{
-        "urls": [
-            "turn:openrelay.metered.ca:80"
-        ],
-    }]
-}
+
 export const createRTCMediaStream = async () => {
-    // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection(serverTest);
+    const rtcOptions = await getIceServers();
+    console.log("🚀 --> file: createRTCMediaStream.js --> line 76 --> createRTCMediaStream --> rtcOptions", rtcOptions);
+    const peerConnection = new RTCPeerConnection(rtcOptions);
     const { } = createMediaStream(peerConnection);
 
     return {
