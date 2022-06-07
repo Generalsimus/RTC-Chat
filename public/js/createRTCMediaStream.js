@@ -71,10 +71,10 @@ const talkyIoServers = {
 const serverTest = {
     iceServers: [{
         "urls": [
-            "turn:13.250.13.83:3478?transport=udp"
+            "turn:turn.anyfirewall.com:443?transport=tcp"
         ],
-        "username": "YzYNCouZM1mhqhmseWk6",
-        "credential": "YzYNCouZM1mhqhmseWk6"
+        credential: 'webrtc',
+        username: 'webrtc'
     }]
 }
 export const createRTCMediaStream = async () => {
