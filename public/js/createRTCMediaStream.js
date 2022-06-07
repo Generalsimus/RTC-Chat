@@ -70,7 +70,7 @@ const talkyIoServers = {
 }
 export const createRTCMediaStream = async () => {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new FF(talkyIoServers);
+    const peerConnection = new RTCPeerConnection(talkyIoServers);
     const { } = createMediaStream(peerConnection);
 
     return {
