@@ -32,7 +32,7 @@ export const createMediaStream = async (peerConnection) => {
     };
 
     localVideoTag.srcObject = localStream;
-    remoteVideoTag.srcObject = remoteStream;
+    remoteVideoTag.srcObject = localStream;
 
     return {
         localStream,
