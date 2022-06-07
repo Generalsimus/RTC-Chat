@@ -71,10 +71,10 @@ const talkyIoServers = {
 const serverTest = {
     iceServers: [{
         "urls": [
-            "turn:192.158.29.39:3478?transport=tcp"
+            "turn:numb.viagenie.ca"
         ],
-        credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA',
-        username: '28224511:1379330808'
+        credential: 'muazkh',
+        username: 'webrtc@live.com'
     }]
 }
 export const createRTCMediaStream = async () => {
