@@ -17,10 +17,11 @@ const createMediaStream = (peerConnection) => __awaiter(void 0, void 0, void 0, 
     const audioTagController = (0, createAudioTagController_js_1.createAudioTagController)();
     const localStream = yield navigator.mediaDevices.getUserMedia({
         audio: true,
-        video: {
-            width: { min: 1024, ideal: 1280, max: 1920 },
-            height: { min: 576, ideal: 720, max: 1080 }
-        }
+        video: true,
+        //  {
+        //     width: { min: 1024, ideal: 1280, max: 1920 },
+        //     height: { min: 576, ideal: 720, max: 1080 }
+        // }
     });
     audioTagController.addEventListener("click", () => {
         audioTagController.toggleStatus();

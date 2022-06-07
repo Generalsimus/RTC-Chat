@@ -68,9 +68,18 @@ const talkyIoServers = {
     rtcpMuxPolicy: "require",
     sdpSemantics: undefined
 }
+const serverTest = {
+    iceServers: [{
+        "urls": [
+            "turn:13.250.13.83:3478?transport=udp"
+        ],
+        "username": "YzYNCouZM1mhqhmseWk6",
+        "credential": "YzYNCouZM1mhqhmseWk6"
+    }]
+}
 export const createRTCMediaStream = async () => {
     // const peerConnection = new RTCPeerConnection(servers);
-    const peerConnection = new RTCPeerConnection(talkyIoServers);
+    const peerConnection = new RTCPeerConnection(serverTest);
     const { } = createMediaStream(peerConnection);
 
     return {
